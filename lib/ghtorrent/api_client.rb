@@ -255,7 +255,7 @@ module GHTorrent
           'Accept' => media_type
       }
 
-      headers = headers.merge({'Authorization' => "token #{@token}"}) if auth_method(@token) == :token
+      headers = headers.merge({'Authorization' => "Bearer #{@token}"}) if auth_method(@token) == :token
       headers = headers.merge({'If-None-Match' => etag}) if etag
 
       # Only way to encode square brackets in standard Ruby
