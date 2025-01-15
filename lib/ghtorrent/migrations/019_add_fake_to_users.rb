@@ -10,7 +10,7 @@ Sequel.migration do
       self.transaction(:rollback => :reraise, :isolation => :committed) do
         self << "update users
                  set fake = '1'
-                 where CAST(users.login AS BINARY) regexp '[A-Z]{8}'
+                 where CAST(users.login AS BINARY) regexp BINARY '[A-Z]{8}'
                   and not exists (select * from pull_request_history where users.id = actor_id)
                   and not exists (select * from issue_events where actor_id = users.id)
                   and not exists (select * from project_members where users.id = user_id)
